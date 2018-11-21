@@ -10,7 +10,8 @@ typedef struct{
    int width, height;
 }Image;
 
-
+Image* readImage(char* filename);
+void saveImage(Image* image, char* filename);
 Image* createImage(int width, int height);
 void freeImage(Image* image);
 #endif

@@ -123,6 +123,33 @@ StegTool/fast:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/build
 .PHONY : StegTool/fast
 
+src/binary.o: src/binary.c.o
+
+.PHONY : src/binary.o
+
+# target to build an object file
+src/binary.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/binary.c.o
+.PHONY : src/binary.c.o
+
+src/binary.i: src/binary.c.i
+
+.PHONY : src/binary.i
+
+# target to preprocess a source file
+src/binary.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/binary.c.i
+.PHONY : src/binary.c.i
+
+src/binary.s: src/binary.c.s
+
+.PHONY : src/binary.s
+
+# target to generate assembly for a file
+src/binary.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/binary.c.s
+.PHONY : src/binary.c.s
+
 src/compression.o: src/compression.c.o
 
 .PHONY : src/compression.o
@@ -149,6 +176,60 @@ src/compression.s: src/compression.c.s
 src/compression.c.s:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/compression.c.s
 .PHONY : src/compression.c.s
+
+src/createSteg.o: src/createSteg.c.o
+
+.PHONY : src/createSteg.o
+
+# target to build an object file
+src/createSteg.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/createSteg.c.o
+.PHONY : src/createSteg.c.o
+
+src/createSteg.i: src/createSteg.c.i
+
+.PHONY : src/createSteg.i
+
+# target to preprocess a source file
+src/createSteg.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/createSteg.c.i
+.PHONY : src/createSteg.c.i
+
+src/createSteg.s: src/createSteg.c.s
+
+.PHONY : src/createSteg.s
+
+# target to generate assembly for a file
+src/createSteg.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/createSteg.c.s
+.PHONY : src/createSteg.c.s
+
+src/destroySteg.o: src/destroySteg.c.o
+
+.PHONY : src/destroySteg.o
+
+# target to build an object file
+src/destroySteg.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.o
+.PHONY : src/destroySteg.c.o
+
+src/destroySteg.i: src/destroySteg.c.i
+
+.PHONY : src/destroySteg.i
+
+# target to preprocess a source file
+src/destroySteg.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.i
+.PHONY : src/destroySteg.c.i
+
+src/destroySteg.s: src/destroySteg.c.s
+
+.PHONY : src/destroySteg.s
+
+# target to generate assembly for a file
+src/destroySteg.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.s
+.PHONY : src/destroySteg.c.s
 
 src/image.o: src/image.c.o
 
@@ -240,9 +321,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... StegTool"
 	@echo "... edit_cache"
+	@echo "... src/binary.o"
+	@echo "... src/binary.i"
+	@echo "... src/binary.s"
 	@echo "... src/compression.o"
 	@echo "... src/compression.i"
 	@echo "... src/compression.s"
+	@echo "... src/createSteg.o"
+	@echo "... src/createSteg.i"
+	@echo "... src/createSteg.s"
+	@echo "... src/destroySteg.o"
+	@echo "... src/destroySteg.i"
+	@echo "... src/destroySteg.s"
 	@echo "... src/image.o"
 	@echo "... src/image.i"
 	@echo "... src/image.s"

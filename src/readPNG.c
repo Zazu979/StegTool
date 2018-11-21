@@ -2,14 +2,10 @@
 * @Author: zazu
 * @Date:   2018-11-20 18:06:08
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-20 22:37:48
+* @Last Modified time: 2018-11-21 18:36:49
 */
 
-#include <png.h>
-#include <image.h>
 #include <readPNG.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 
 typedef struct{
@@ -35,6 +31,87 @@ Image* readPNG(char* filename){
    freePNG(pngImage);
 
    return image;
+}
+
+void savePNG(Image* image, char* filename){
+
+   FILE* file = NULL;
+   png_structp png_ptr = NULL;
+   png_infop info_ptr = NULL;
+   png_bytep row = NULL;
+   Pixel* pixel = NULL;
+
+   int ii,jj, kk;
+   char title[] = "This has been Stegged";
+
+   int width = image->width;
+   int height = image->height;
+
+   printf("Save PNG\n");
+
+   /*Open file for writing (binary mode)*/
+   file = fopen(filename, "wb");
+   if (file == NULL) {
+      fprintf(stderr, "Could not open file %s for writing\n", filename);
+   }
+
+   /*Initialize write structure*/
+   png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+   if (png_ptr == NULL) {
+      fprintf(stderr, "Could not allocate write struct\n");
+   }
+
+   /*Initialize info structure*/
+   info_ptr = png_create_info_struct(png_ptr);
+   if (info_ptr == NULL) {
+      fprintf(stderr, "Could not allocate info struct\n");
+   }
+
+   /*Setup Exception handling*/
+   if (setjmp(png_jmpbuf(png_ptr))) {
+      fprintf(stderr, "Error during png creation\n");
+   }
+
+   png_init_io(png_ptr, file);
+
+   /*Write header (8 bit colour depth)*/
+   png_set_IHDR(png_ptr, info_ptr, width, height,
+         8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
+         PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+
+   /*Set title*/
+   if (title != NULL) {
+      png_text title_text;
+      title_text.compression = PNG_TEXT_COMPRESSION_NONE;
+      title_text.key = "Title";
+      title_text.text = title;
+      png_set_text(png_ptr, info_ptr, &title_text, 1);
+   }
+
+   png_write_info(png_ptr, info_ptr);
+
+   /*Allocate memory for one row (3 bytes per pixel - RGB)*/
+   row = (png_bytep) malloc(3 * width * sizeof(png_byte));
+
+   for (ii = 0 ; ii < height ; ii++) {
+      for (jj=0 ; jj < width ; jj++) {
+         pixel = &(image->pixels[ii][jj]);
+         for(kk = 0; kk < 3; kk++){  
+            row[(jj*3)+kk] = pixel->rgb[kk];
+         }
+      }
+      png_write_row(png_ptr, row);
+   }
+
+   png_write_end(png_ptr, NULL);
+
+   /*CLEANUP*/
+   fclose(file);
+   png_free_data(png_ptr, info_ptr, PNG_FREE_ALL, -1);
+   png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+   free(row);
+
+
 }
 
 static void freePNG(PNGImage* image){
@@ -86,6 +163,8 @@ static PNGImage* readPNGFile(char* filename){
    int ii = 0;
 
    FILE* file = fopen(filename, "rb");
+
+   printf("Read PNG\n");
 
    if(file == NULL){
       printf("File %s could not be opened for reading\n", filename);

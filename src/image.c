@@ -2,11 +2,20 @@
 * @Author: zazu
 * @Date:   2018-11-20 19:39:19
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-20 22:35:25
+* @Last Modified time: 2018-11-21 15:18:58
 */
 
 #include <stdlib.h>
 #include <image.h>
+#include <readPNG.h>
+
+Image* readImage(char* filename){
+   return readPNG(filename);
+}
+
+void saveImage(Image* image, char* filename){
+   savePNG(image, filename);
+}
 
 Image* createImage(int width, int height){
 

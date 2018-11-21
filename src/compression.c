@@ -2,13 +2,13 @@
 * @Author: zazu
 * @Date:   2018-11-20 23:58:36
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 00:12:58
+* @Last Modified time: 2018-11-21 19:09:23
 */
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
-
 #include <zlib.h>
+
 #include <compression.h>
 
 
@@ -42,6 +42,8 @@ void decompressFile(char *infilename, char *outfilename)
    char buffer[128];
    int num_read = 0;
    
+   printf("Decompression time\n");
+   
    if (!infile || !outfile) 
       return;
 
@@ -72,8 +74,8 @@ void compressFile(char *infilename, char *outfilename)
    
    fclose(infile);
    gzclose(outfile);
-   /*
+   
    printf("Read %ld bytes, Wrote %d bytes,Compression factor %4.2f%%\n",
       total_read, getFileLength(outfilename),
-      (1.0-getFileLength(outfilename)*1.0/total_read)*100.0);*/
+      (1.0-getFileLength(outfilename)*1.0/total_read)*100.0);
 }
