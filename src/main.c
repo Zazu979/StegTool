@@ -2,7 +2,7 @@
 * @Author: zazu
 * @Date:   2018-11-20 15:00:41
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 14:19:47
+* @Last Modified time: 2018-11-22 14:19:59
 */
 /*
 #include <unistd.h>
@@ -14,12 +14,16 @@
 
 #include <string.h>
 
+#include <readArgs.h>
+#include <verbose.h>
 #include <createSteg.h>
 #include <destroySteg.h>
 
-
 int main(int argc, char **argv){
- 
+
+   readArgs(argc, argv);
+   return 0;
+
    if(argc == 4){
       /*Desteg it*/
       if(strncmp(argv[1], "-d", 3) == 0){

@@ -2,8 +2,11 @@
 * @Author: zazu
 * @Date:   2018-11-21 11:31:10
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 19:39:22
+* @Last Modified time: 2018-11-22 10:50:20
 */
+
+
+/*#include <stdint.h>*/
 
 #include <createSteg.h>
 
@@ -26,7 +29,7 @@ void createSteganography(char* imageFile, char* textFile, char* outputFile){
       saveImage(image, outputFile);
 
    }else{
-      printf("Image file is not large enough to hide input file\n");
+      printf("Image file is not large enough to hide input file.\nImage has %d pixels. You need atleast %d pixels. for this input file\n", image->width * image->height, ((inputLength+4)*8)/3);
    }
 
    /*Delete the temporary file*/

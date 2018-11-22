@@ -285,6 +285,33 @@ src/main.c.s:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/readArgs.o: src/readArgs.c.o
+
+.PHONY : src/readArgs.o
+
+# target to build an object file
+src/readArgs.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.o
+.PHONY : src/readArgs.c.o
+
+src/readArgs.i: src/readArgs.c.i
+
+.PHONY : src/readArgs.i
+
+# target to preprocess a source file
+src/readArgs.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.i
+.PHONY : src/readArgs.c.i
+
+src/readArgs.s: src/readArgs.c.s
+
+.PHONY : src/readArgs.s
+
+# target to generate assembly for a file
+src/readArgs.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.s
+.PHONY : src/readArgs.c.s
+
 src/readPNG.o: src/readPNG.c.o
 
 .PHONY : src/readPNG.o
@@ -311,6 +338,33 @@ src/readPNG.s: src/readPNG.c.s
 src/readPNG.c.s:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readPNG.c.s
 .PHONY : src/readPNG.c.s
+
+src/verbose.o: src/verbose.c.o
+
+.PHONY : src/verbose.o
+
+# target to build an object file
+src/verbose.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/verbose.c.o
+.PHONY : src/verbose.c.o
+
+src/verbose.i: src/verbose.c.i
+
+.PHONY : src/verbose.i
+
+# target to preprocess a source file
+src/verbose.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/verbose.c.i
+.PHONY : src/verbose.c.i
+
+src/verbose.s: src/verbose.c.s
+
+.PHONY : src/verbose.s
+
+# target to generate assembly for a file
+src/verbose.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/verbose.c.s
+.PHONY : src/verbose.c.s
 
 # Help Target
 help:
@@ -339,9 +393,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/readArgs.o"
+	@echo "... src/readArgs.i"
+	@echo "... src/readArgs.s"
 	@echo "... src/readPNG.o"
 	@echo "... src/readPNG.i"
 	@echo "... src/readPNG.s"
+	@echo "... src/verbose.o"
+	@echo "... src/verbose.i"
+	@echo "... src/verbose.s"
 .PHONY : help
 
 
