@@ -2,7 +2,7 @@
 * @Author: zazu
 * @Date:   2018-11-22 10:37:39
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-22 14:51:49
+* @Last Modified time: 2018-11-23 15:52:46
 */
 
 #include <stdio.h>
@@ -13,7 +13,7 @@
 #include <readArgs.h>
 
 #define VERSION_MAJOR  "0"
-#define VERSION_MINOR  "0"
+#define VERSION_MINOR  "1"
 #define VERSION_STRING "Stegtool "
 
 
@@ -23,12 +23,12 @@ const char *argp_program_version = VERSION;
 const char *argp_program_bug_address =
   "<jonathon.winter979@gmail.com>";
 
-static char doc[] = "Steganography Tool to hide and remove files in images";
+const char doc[] = "Steganography Tool to hide and remove files in images";
 
 static struct argp_option options[] = {
   {"input",    'i', "IMAGE", 0, "Image to be read" },
   {"file",     'f', "FILE",  0, "File to be hidden" },
-  {"output",   'o', "FILE",  0, "Output file, image or txt file" },
+  {"output",   'o', "FILE",  0, "Output file, image or any file" },
   {"verbose",  'v', 0,       0, "Produce verbose output" },
   {"desteg",   'd', 0,       0, "Retrieve file from a image" },
   { 0 }
@@ -51,7 +51,7 @@ int parse_opt (int key, char *arg, struct argp_state *state)
       case 'o':
          args->outputFile = arg;
          break;
-      case 't':
+      case 'd':
          args->type = DESTROY_STEG;
          break;
       case 'v':
@@ -79,13 +79,11 @@ Arguments* createArgs(){
 
 static struct argp argp = { options, parse_opt, 0, doc };
 
-void readArgs(int argc, char** argv){
+Arguments* readArgs(int argc, char** argv){
 
    Arguments* args = createArgs();
 
    argp_parse (&argp, argc, argv, 0, 0, args);
-
-
 
    printf("imageFile: %s\ninputFile: %s\noutputFile: %s\nverbose: %s\ntype: %s\n",
          args->imageFile,
@@ -93,4 +91,7 @@ void readArgs(int argc, char** argv){
          args->outputFile,
          args->verbose == true ? "TRUE" : "FALSE",
          args->type == CREATE_STEG ? "create" : "destroy");
+
+   return args;
+
 }

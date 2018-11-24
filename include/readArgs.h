@@ -2,7 +2,7 @@
 * @Author: zazu
 * @Date:   2018-11-22 10:37:46
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-22 11:15:12
+* @Last Modified time: 2018-11-23 15:52:56
 */
 #ifndef READARGS_H
 #define READARGS_H
@@ -17,7 +17,7 @@ typedef struct{
    TYPE type;
 }Arguments;
 
-void readArgs(int argc, char** argv);
+Arguments* readArgs(int argc, char** argv);
 
 
 #endif

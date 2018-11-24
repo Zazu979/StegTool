@@ -2,7 +2,7 @@
 * @Author: zazu
 * @Date:   2018-11-20 15:00:41
 * @Last Modified by:   zazu
-* @Last Modified time: 2018-11-22 14:19:59
+* @Last Modified time: 2018-11-24 11:42:12
 */
 /*
 #include <unistd.h>
@@ -21,8 +21,18 @@
 
 int main(int argc, char **argv){
 
-   readArgs(argc, argv);
-   return 0;
+
+   Arguments* args = readArgs(argc, argv);
+
+   if(args != NULL){
+      if(args->type == CREATE_STEG){
+
+      }else if(args->type == DESTROY_STEG){
+
+      }else{
+         printf("Unknown error has occured\n");
+      }
+   }
 
    if(argc == 4){
       /*Desteg it*/
