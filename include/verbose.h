@@ -1,9 +1,12 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-21 23:22:37
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 23:46:59
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:51:45
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:51:45
 */
+
+
 #ifndef VERBOSE_H
 #define VERBOSE_H
 
@@ -13,4 +16,6 @@
 
 void setVerbose(bool verbose);
 void vprint(const char* format, ...);
+
 #endif
+

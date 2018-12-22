@@ -1,15 +1,13 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-21 16:37:21
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 23:23:33
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:51:41
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:51:41
 */
+
 #ifndef READPNG_H
 #define READPNG_H
-
-#include <png.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include <image.h>
 

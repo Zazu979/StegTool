@@ -1,12 +1,17 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-20 18:06:08
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 18:36:49
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:52:02
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:52:02
 */
 
-#include <readPNG.h>
 
+#include <png.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <readPNG.h>
 
 typedef struct{
    png_bytep* rows;

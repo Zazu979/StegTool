@@ -1,9 +1,11 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-21 22:25:45
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 23:50:21
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:52:05
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:52:05
 */
+
 
 #include <verbose.h>
 

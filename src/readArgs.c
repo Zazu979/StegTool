@@ -1,9 +1,11 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-22 10:37:39
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-23 15:52:46
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:51:58
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:51:58
 */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,7 +18,6 @@
 #define VERSION_MINOR  "1"
 #define VERSION_STRING "Stegtool "
 
-
 #define VERSION VERSION_STRING VERSION_MAJOR "." VERSION_MINOR 
 
 const char *argp_program_version = VERSION;
@@ -28,7 +29,7 @@ const char doc[] = "Steganography Tool to hide and remove files in images";
 static struct argp_option options[] = {
   {"input",    'i', "IMAGE", 0, "Image to be read" },
   {"file",     'f', "FILE",  0, "File to be hidden" },
-  {"output",   'o', "FILE",  0, "Output file, image or any file" },
+  {"output",   'o', "FILE/IMAGE",  0, "Output file, image or any file" },
   {"verbose",  'v', 0,       0, "Produce verbose output" },
   {"desteg",   'd', 0,       0, "Retrieve file from a image" },
   { 0 }
@@ -38,10 +39,9 @@ int parse_opt (int key, char *arg, struct argp_state *state)
 {
    /* Get the input argument from argp_parse, which we
      know is a pointer to our arguments structure. */
-   Arguments* args = state->input;
+   Arguments* args = (Arguments*)state->input;
 
-   switch (key)
-   {
+   switch (key){
       case 'i':
          args->imageFile = arg;
          break;
@@ -73,24 +73,41 @@ Arguments* createArgs(){
    args->verbose = false;
    args->type = CREATE_STEG;
 
+   args->status = VALID;
+
    return args;
 
 }
 
-static struct argp argp = { options, parse_opt, 0, doc };
+void checkArgs(Arguments* args){
+
+   // There must be an image file to be read
+   if(args->imageFile == NULL){
+      args->status = NO_IMAGE_FILE;
+   }
+   // There must be an output file, whether it be an image or text file
+   else if(args->outputFile == NULL){
+      args->status = NO_OUTPUT_FILE;
+   }
+   // If you are create a steg then their must also be in input file.
+   else if(args->type == CREATE_STEG){
+      if(args->inputFile == NULL){
+         args->status = NO_INPUT_FILE;
+      }
+   }
+
+   // TODO Add validation on impossible combinations
+
+}
 
 Arguments* readArgs(int argc, char** argv){
 
    Arguments* args = createArgs();
+   static struct argp argp = { options, parse_opt, 0, doc };
 
-   argp_parse (&argp, argc, argv, 0, 0, args);
+   argp_parse(&argp, argc, argv, 0, 0, args);
 
-   printf("imageFile: %s\ninputFile: %s\noutputFile: %s\nverbose: %s\ntype: %s\n",
-         args->imageFile,
-         args->inputFile,
-         args->outputFile,
-         args->verbose == true ? "TRUE" : "FALSE",
-         args->type == CREATE_STEG ? "create" : "destroy");
+   checkArgs(args);
 
    return args;
 

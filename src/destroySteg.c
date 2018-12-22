@@ -1,69 +1,124 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-21 14:07:26
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 19:38:40
-*/
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:47:20
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2018-12-22 15:25:27
+ */
+ 
 
-#include <destroySteg.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+
+#include <compression.h>
+#include <image.h>
+#include <binary.h>
+#include <genericSteg.h>
+#include <bool.h>
+
+#include <destroySteg.h> 
+
+static void createHeader(StegHeader* header){
+   header->bitsPerColour = header->binValue[0];
+   header->compress = header->binValue[1];
+   header->dataLength = 0;
+
+   for(int ii = 2; ii < HEADER_SIZE; ii++){
+      header->dataLength <<= 1;
+      header->dataLength += header->binValue[ii];
+   }
+
+}
 
 void destroySteganography(char* imageFile, char* outputFile){
    Image* image = readImage(imageFile);
    removeSteg(image, outputFile);
+   freeImage(image);
 }
 
 void removeSteg(Image* image, char* outputFile){
    int width = image->width;
    int height = image->height;
-   Pixel* pixel;
+   Pixel* pixel = NULL, *prev = NULL;
    int ii,jj,kk;
 
-   FILE* decompressedFile = fopen(DECOMPRESSED_FILE, "wb");
+   // TODO error handling on file
 
-   int bin[8] = {0,0,0,0,0,0,0,0};
+   FILE* file = NULL;
 
-   uint32_t length = 0;
- 
+   int binValue[8] = {0,0,0,0,0,0,0,0};
+
+   const int* rgbOrder = NULL;
+   
+   Bool readHeader = TRUE;
+
+   StegHeader* header = (StegHeader*)malloc(sizeof(StegHeader));
+
+   int requiredLoops = -1;
+
+   int bitValue = -1;
+
    int loops = 0;
-   int count = 0;
-   int value = 0;
+   int idx = 0;
+   unsigned char value = 0;
+
 
    for (ii = 0; ii < height; ii++){
       for (jj = 0; jj < width; jj++){
+         prev = pixel;
+         rgbOrder = getOrder(prev);
          pixel = &(image->pixels[ii][jj]);
          for (kk = 0; kk < 3; kk++){
-            if(count == 8){
 
-               value = binToVal(bin);
+            if(loops == requiredLoops){
 
-               if(loops <= 32){
-                  length = length << 8;
-                  length += value;
-               }else{
-                  fputc(value, decompressedFile);
-               }
+               fclose(file);
 
-               /*Dont compare length until youve read it. And then you're done*/
-               if(loops > 31 && loops == (length+4)*8){
-                  fclose(decompressedFile);
+               if(header->compress == TRUE){
                   decompressFile(DECOMPRESSED_FILE, outputFile);
                   remove(DECOMPRESSED_FILE);
-                  return;
                }
-               count = 0;
+               free(header);
+               return;
             }
 
-            bin[count] = pixel->rgb[kk]%2;
+            bitValue = pixel->rgb[rgbOrder[kk]] % 2;
 
-            count++;
+            if(readHeader){
+               header->binValue[idx] = bitValue;
+
+               if(idx == HEADER_SIZE -1){
+                  readHeader = FALSE;
+                  createHeader(header);
+                  
+                  requiredLoops = header->dataLength + HEADER_SIZE;
+
+                  if(header->compress == TRUE){
+                     file = fopen(DECOMPRESSED_FILE, "wb");
+                  }else{
+                     file = fopen(outputFile, "wb");
+                  }
+
+                  idx = -1;
+               }
+            }else{
+
+                  binValue[idx] = bitValue;
+
+                  if(idx == 7){
+                     value = binToVal(binValue);
+                     fputc(value, file);
+                     idx = -1;                     
+                  }
+               }
+
+            idx++;
             loops++;
          }
       }
    }
 
-   /*Shouldnt hit here, but just in case*/
-   fclose(decompressedFile);
-   decompressFile(DECOMPRESSED_FILE, outputFile);
-   remove(DECOMPRESSED_FILE);
+   //TODO also handle stuff here
 
 }

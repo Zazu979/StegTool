@@ -1,16 +1,17 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-20 23:58:36
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 19:09:23
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:49:44
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:49:44
 */
+ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <zlib.h>
 
 #include <compression.h>
-
 
 uint32_t getFileLength(char* filename){
    FILE* file = fopen(filename, "rb");
@@ -55,7 +56,7 @@ void decompressFile(char *infilename, char *outfilename)
    fclose(outfile);
 }
 
-void compressFile(char *infilename, char *outfilename)
+char* compressFile(char *infilename, char *outfilename)
 {
    FILE *infile = fopen(infilename, "rb");
    gzFile outfile = gzopen(outfilename, "wb");
@@ -65,7 +66,7 @@ void compressFile(char *infilename, char *outfilename)
    unsigned long total_read = 0;
    
    if (!infile || !outfile) 
-      return;
+      return NULL;
    
    while ((num_read = fread(inbuffer, 1, sizeof(inbuffer), infile)) > 0) {
       total_read += num_read;
@@ -75,6 +76,14 @@ void compressFile(char *infilename, char *outfilename)
    fclose(infile);
    gzclose(outfile);
    
+   if(total_read < getFileLength(outfilename)){
+      printf("Using the original file\n");
+      return infilename;
+   }else{
+      printf("Using the compressed file\n");
+      return outfilename;
+   }
+
    printf("Read %ld bytes, Wrote %d bytes,Compression factor %4.2f%%\n",
       total_read, getFileLength(outfilename),
       (1.0-getFileLength(outfilename)*1.0/total_read)*100.0);

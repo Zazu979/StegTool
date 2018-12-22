@@ -1,0 +1,8 @@
+{
+   "files.associations": {
+      "readjpg.h": "c",
+      "image.h": "c",
+      "readpng.h": "c"
+   },
+   "cmake.configureOnOpen": true
+}

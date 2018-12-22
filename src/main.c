@@ -1,18 +1,22 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-20 15:00:41
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-24 11:42:12
-*/
-/*
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include <stdint.h>
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:51:55
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2018-12-22 15:18:34
 */
 
+/*
+#include <unistd.h>
+#include <limits.h>
+#include <stdint.h>
+#include <stdio.h>
+*/
+#include <stdlib.h>
+
 #include <string.h>
+
+#include <readJPG.h>  
 
 #include <readArgs.h>
 #include <verbose.h>
@@ -21,37 +25,27 @@
 
 int main(int argc, char **argv){
 
-
    Arguments* args = readArgs(argc, argv);
 
-   if(args != NULL){
+   if(args->status == VALID){
+
+      setVerbose(args->verbose);
+
       if(args->type == CREATE_STEG){
-
+         createSteganography(args->imageFile, args->inputFile, args->outputFile);
       }else if(args->type == DESTROY_STEG){
-
+         destroySteganography(args->imageFile, args->outputFile);
       }else{
          printf("Unknown error has occured\n");
       }
-   }
-
-   if(argc == 4){
-      /*Desteg it*/
-      if(strncmp(argv[1], "-d", 3) == 0){
-         char* imageFile = argv[2];
-         char* outputFile = argv[3];
-
-         destroySteganography(imageFile, outputFile);
-      }else{ /*Created Steg*/
-         char* imageFile = argv[1];
-         char* textFile = argv[2];
-         char* outFile = argv[3];
-
-         createSteganography(imageFile, textFile, outFile);
-      }
    }else{
+      // TODO: Specific errors dependant on status
+
       printf("./StegTool image.png input.txt output.png\n");
       printf("./StegTool -d image.png input.txt \n");
    }
+
+   free(args);
 
    return 0;
 }

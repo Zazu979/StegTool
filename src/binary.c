@@ -1,40 +1,39 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-21 11:34:11
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 11:35:41
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:49:36
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2018-12-22 12:17:47
 */
+ 
 
 #include <stdint.h>
 #include <binary.h>
 
-int binToVal(int bin[8]){
+int binToVal(int binValue[8]){
    int ii, val = 0;
 
    for (ii = 0; ii < 8; ii++ ){
       val *= 2;
-      val += bin[ii];   
+      val += binValue[ii];   
    }
 
    return val;
 
 }
 
-void valToBin(int value, int bin[8]){
-   int ii = 0, temp;
-   
-   for (ii = 0; ii < 8; ++ii){
-      temp = value >> ii;
-      bin[7-ii] = temp&1;
-   }
-
-}
-
-void uint32ToBin(uint32_t value, int bin[32]){
-   int ii, temp;
-
-   for (ii = 0; ii < 32; ++ii){
-      temp = value >> ii;
-      bin[31-ii] = temp&1;
+void charToBin(unsigned char value,int binValue[8]){
+   for(int ii = 7; ii >= 0; ii--){
+      binValue[ii] = value & 1;
+      value >>= 1;
    }
 }
+
+// void uint32ToBin(uint32_t value, int binValue[32]){
+//    int ii, temp;
+
+//    for (ii = 0; ii < 32; ++ii){
+//       temp = value >> ii;
+//       binValue[31-ii] = temp&1;
+//    }
+// }

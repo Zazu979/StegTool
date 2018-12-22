@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zazu/Documents/MyProjects/StegTool
+CMAKE_SOURCE_DIR = /home/zazu/Documents/StegTool
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zazu/Documents/MyProjects/StegTool
+CMAKE_BINARY_DIR = /home/zazu/Documents/StegTool
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/MyProjects/StegTool/CMakeFiles /home/zazu/Documents/MyProjects/StegTool/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/StegTool/CMakeFiles /home/zazu/Documents/StegTool/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/MyProjects/StegTool/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/StegTool/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -231,6 +231,33 @@ src/destroySteg.c.s:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.s
 .PHONY : src/destroySteg.c.s
 
+src/genericSteg.o: src/genericSteg.c.o
+
+.PHONY : src/genericSteg.o
+
+# target to build an object file
+src/genericSteg.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/genericSteg.c.o
+.PHONY : src/genericSteg.c.o
+
+src/genericSteg.i: src/genericSteg.c.i
+
+.PHONY : src/genericSteg.i
+
+# target to preprocess a source file
+src/genericSteg.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/genericSteg.c.i
+.PHONY : src/genericSteg.c.i
+
+src/genericSteg.s: src/genericSteg.c.s
+
+.PHONY : src/genericSteg.s
+
+# target to generate assembly for a file
+src/genericSteg.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/genericSteg.c.s
+.PHONY : src/genericSteg.c.s
+
 src/image.o: src/image.c.o
 
 .PHONY : src/image.o
@@ -312,6 +339,33 @@ src/readArgs.c.s:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.s
 .PHONY : src/readArgs.c.s
 
+src/readJPG.o: src/readJPG.c.o
+
+.PHONY : src/readJPG.o
+
+# target to build an object file
+src/readJPG.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readJPG.c.o
+.PHONY : src/readJPG.c.o
+
+src/readJPG.i: src/readJPG.c.i
+
+.PHONY : src/readJPG.i
+
+# target to preprocess a source file
+src/readJPG.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readJPG.c.i
+.PHONY : src/readJPG.c.i
+
+src/readJPG.s: src/readJPG.c.s
+
+.PHONY : src/readJPG.s
+
+# target to generate assembly for a file
+src/readJPG.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readJPG.c.s
+.PHONY : src/readJPG.c.s
+
 src/readPNG.o: src/readPNG.c.o
 
 .PHONY : src/readPNG.o
@@ -387,6 +441,9 @@ help:
 	@echo "... src/destroySteg.o"
 	@echo "... src/destroySteg.i"
 	@echo "... src/destroySteg.s"
+	@echo "... src/genericSteg.o"
+	@echo "... src/genericSteg.i"
+	@echo "... src/genericSteg.s"
 	@echo "... src/image.o"
 	@echo "... src/image.i"
 	@echo "... src/image.s"
@@ -396,6 +453,9 @@ help:
 	@echo "... src/readArgs.o"
 	@echo "... src/readArgs.i"
 	@echo "... src/readArgs.s"
+	@echo "... src/readJPG.o"
+	@echo "... src/readJPG.i"
+	@echo "... src/readJPG.s"
 	@echo "... src/readPNG.o"
 	@echo "... src/readPNG.i"
 	@echo "... src/readPNG.s"

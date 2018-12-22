@@ -1,9 +1,11 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-20 19:39:19
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-21 15:18:58
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:51:25
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by:   Zazu
+ * @Last Modified time: 2018-12-22 11:51:25
 */
+
 
 #include <stdlib.h>
 #include <image.h>
@@ -28,7 +30,6 @@ Image* createImage(int width, int height){
    image->pixels = (Pixel**)malloc(sizeof(Pixel*) * height);
    for (ii = 0; ii < height; ii++){
       image->pixels[ii] = (Pixel*)malloc(sizeof(Pixel) * width);
-
    }
 
    return image;

@@ -1,9 +1,11 @@
 /*
-* @Author: zazu
-* @Date:   2018-11-21 00:20:10
-* @Last Modified by:   zazu
-* @Last Modified time: 2018-11-22 10:42:23
+ * @Author: Zazu
+ * @Date:   2018-12-22 11:48:58
+ * @Git:    https://github.com/Zazu979
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2018-12-22 11:52:51
 */
+ 
 
 #ifndef COMPRESSION_H
 #define COMPRESSION_H
@@ -11,7 +13,7 @@
 #include <stdint.h>
 
 uint32_t getFileLength(char* filename);
-void compressFile(char* infilename, char* outfilename);
+char* compressFile(char* infilename, char* outfilename);
 void decompressFile(char* infilename, char* outfilename);
 
 #define COMPRESSED_FILE "/tmp/stegCompress"
