@@ -3,7 +3,7 @@
  * @Date:   2018-12-22 11:51:48
  * @Git:    https://github.com/Zazu979
  * @Last Modified by: Zazu
- * @Last Modified time: 2018-12-22 15:24:59
+ * @Last Modified time: 2018-12-22 15:52:15
 */
 
 
@@ -141,6 +141,9 @@ static void startSteg(Image* image, char* filename, uint32_t fileLength){
                   idx = -1;
                }
             }else{
+               /** Youve finished with the current byte read from the file. Time to read the next
+                *  one and reset the index of the Binary value
+                */
                if(idx % 8 == 0){
                   curr = fgetc(file);
                   charToBin(curr, binValue);

@@ -3,7 +3,7 @@
  * @Date:   2018-12-22 11:51:55
  * @Git:    https://github.com/Zazu979
  * @Last Modified by: Zazu
- * @Last Modified time: 2018-12-22 15:18:34
+ * @Last Modified time: 2018-12-22 18:59:38
 */
 
 /*
@@ -23,7 +23,13 @@
 #include <createSteg.h>
 #include <destroySteg.h>
 
+#include <encryption.h>
+
 int main(int argc, char **argv){
+
+   encrypt("txt/test.txt", "txt/enc.txt", "HelloWorld");
+
+   return 0;
 
    Arguments* args = readArgs(argc, argv);
 
