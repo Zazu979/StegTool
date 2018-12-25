@@ -72,7 +72,8 @@ static StegHeader* createHeader(uint32_t fileLength, char* filename, int bitSize
       header->binValue[0] = 1;
    }
 
-   if(filename == COMPRESSED_FILE){
+   // If they are identical
+   if(filename - COMPRESSED_FILE == 0){
       header->binValue[1] = TRUE;
    }else{
       header->binValue[1] = FALSE;
