@@ -19,9 +19,9 @@
 #define HEADER_SIZE 32
 
 // TODO refactor sizing here and store all options :)
-
+// TODO fix bitSize 
 typedef struct{
-   unsigned int bitsPerColour : 1;  // Bits Per Pixel
+   unsigned int bitSize       : 1;  // Bits Per Pixel
    unsigned int compress      : 1;  // Whether the image data has been compressed
    unsigned int dataLength    : HEADER_SIZE -2 ; // The amount of data to to be read
    int binValue[HEADER_SIZE];       // Binary value of the  above information
@@ -36,8 +36,6 @@ typedef struct{
    Pixel** pixels;
    int width, height;
 }Image;
-
-
 
 Image* readImage(char* filename);
 void saveImage(Image* image, char* filename);

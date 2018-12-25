@@ -17,7 +17,7 @@
 #include <string.h>
 */
 
-void createSteganography(char* imageFile, char* inputFile, char* outputFile);
+void createSteganography(char* imageFile, char* inputFile, char* outputFile, int bitSize);
 
 
 #endif

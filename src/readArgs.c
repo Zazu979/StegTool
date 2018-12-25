@@ -10,7 +10,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <argp.h>
-#include <stdbool.h>
 
 #include <readArgs.h>
 
@@ -27,11 +26,12 @@ const char *argp_program_bug_address =
 const char doc[] = "Steganography Tool to hide and remove files in images";
 
 static struct argp_option options[] = {
-  {"input",    'i', "IMAGE", 0, "Image to be read" },
-  {"file",     'f', "FILE",  0, "File to be hidden" },
-  {"output",   'o', "FILE/IMAGE",  0, "Output file, image or any file" },
-  {"verbose",  'v', 0,       0, "Produce verbose output" },
-  {"desteg",   'd', 0,       0, "Retrieve file from a image" },
+  {"input",     'i', "IMAGE", 0, "Image to be read" },
+  {"file",      'f', "FILE",  0, "File to be hidden" },
+  {"output",    'o', "FILE/IMAGE",  0, "Output file, image or any file" },
+  {"verbose",   'v', 0,       0, "Produce verbose output" },
+  {"desteg",    'd', 0,       0, "Retrieve file from a image" },
+  {"compressed",'c', 0,       0, "Halves required storage size (May cause higher distort of colours)" },
   { 0 }
 };
 
@@ -54,8 +54,11 @@ int parse_opt (int key, char *arg, struct argp_state *state)
       case 'd':
          args->type = DESTROY_STEG;
          break;
+      case 'c': // TODO read arg for bitsize
+         args->bitSize = 2;
+         break;
       case 'v':
-         args->verbose = true;
+         args->verbose = TRUE;
          break;
       default:
          return ARGP_ERR_UNKNOWN;
@@ -70,7 +73,8 @@ Arguments* createArgs(){
    args->imageFile = NULL;
    args->inputFile = NULL;
    args->outputFile = NULL;
-   args->verbose = false;
+   args->bitSize = 1;
+   args->verbose = FALSE;
    args->type = CREATE_STEG;
 
    args->status = VALID;

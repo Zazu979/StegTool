@@ -20,7 +20,8 @@
 #include <destroySteg.h> 
 
 static void createHeader(StegHeader* header){
-   header->bitsPerColour = header->binValue[0];
+   // TODO allow for more than 2 bitSizes
+   header->bitSize = header->binValue[0];
    header->compress = header->binValue[1];
    header->dataLength = 0;
 
@@ -63,6 +64,9 @@ void removeSteg(Image* image, char* outputFile){
    int idx = 0;
    unsigned char value = 0;
 
+   // The value that the colour is modded by (Determined by bits per colour)
+   int modder = 2; 
+   int bitSize = 1;
 
    for (ii = 0; ii < height; ii++){
       for (jj = 0; jj < width; jj++){
@@ -83,7 +87,7 @@ void removeSteg(Image* image, char* outputFile){
                return;
             }
 
-            bitValue = pixel->rgb[rgbOrder[kk]] % 2;
+            bitValue = pixel->rgb[rgbOrder[kk]] % modder;
 
             if(readHeader){
                header->binValue[idx] = bitValue;
@@ -100,20 +104,31 @@ void removeSteg(Image* image, char* outputFile){
                      file = fopen(outputFile, "wb");
                   }
 
-                  idx = -1;
+                  // TODO allow for more bitSizes
+                  if(header->bitSize == 0){
+                     bitSize = 1;
+                     modder = 2;
+                  }else{
+                     bitSize = 2;
+                     modder = 4;
+                  }
+
+                  idx = -bitSize;
                }
             }else{
+                  for(int ii = bitSize-1; ii >= 0; ii--){
+                     binValue[idx+ii] = bitValue % 2;
+                     bitValue >>= 1;
+                  }
 
-                  binValue[idx] = bitValue;
-
-                  if(idx == 7){
+                  if(idx == 8-bitSize){
                      value = binToVal(binValue);
                      fputc(value, file);
-                     idx = -1;                     
+                     idx = -bitSize;                     
                   }
                }
 
-            idx++;
+            idx += bitSize;
             loops++;
          }
       }

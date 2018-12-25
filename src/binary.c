@@ -5,7 +5,7 @@
  * @Last Modified by: Zazu
  * @Last Modified time: 2018-12-22 12:17:47
 */
- 
+#include <stdio.h> 
 
 #include <stdint.h>
 #include <binary.h>

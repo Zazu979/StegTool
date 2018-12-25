@@ -23,13 +23,9 @@
 #include <createSteg.h>
 #include <destroySteg.h>
 
-#include <encryption.h>
+// #include <encryption.h>
 
 int main(int argc, char **argv){
-
-   encrypt("txt/test.txt", "txt/enc.txt", "HelloWorld");
-
-   return 0;
 
    Arguments* args = readArgs(argc, argv);
 
@@ -38,7 +34,7 @@ int main(int argc, char **argv){
       setVerbose(args->verbose);
 
       if(args->type == CREATE_STEG){
-         createSteganography(args->imageFile, args->inputFile, args->outputFile);
+         createSteganography(args->imageFile, args->inputFile, args->outputFile, args->bitSize);
       }else if(args->type == DESTROY_STEG){
          destroySteganography(args->imageFile, args->outputFile);
       }else{
