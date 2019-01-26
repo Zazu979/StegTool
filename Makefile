@@ -258,6 +258,33 @@ src/encryption.c.s:
 	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/encryption.c.s
 .PHONY : src/encryption.c.s
 
+src/fileType.o: src/fileType.c.o
+
+.PHONY : src/fileType.o
+
+# target to build an object file
+src/fileType.c.o:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/fileType.c.o
+.PHONY : src/fileType.c.o
+
+src/fileType.i: src/fileType.c.i
+
+.PHONY : src/fileType.i
+
+# target to preprocess a source file
+src/fileType.c.i:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/fileType.c.i
+.PHONY : src/fileType.c.i
+
+src/fileType.s: src/fileType.c.s
+
+.PHONY : src/fileType.s
+
+# target to generate assembly for a file
+src/fileType.c.s:
+	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/fileType.c.s
+.PHONY : src/fileType.c.s
+
 src/genericSteg.o: src/genericSteg.c.o
 
 .PHONY : src/genericSteg.o
@@ -471,6 +498,9 @@ help:
 	@echo "... src/encryption.o"
 	@echo "... src/encryption.i"
 	@echo "... src/encryption.s"
+	@echo "... src/fileType.o"
+	@echo "... src/fileType.i"
+	@echo "... src/fileType.s"
 	@echo "... src/genericSteg.o"
 	@echo "... src/genericSteg.i"
 	@echo "... src/genericSteg.s"

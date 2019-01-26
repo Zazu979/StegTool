@@ -3,7 +3,7 @@
  * @Date:   2018-12-22 11:51:55
  * @Git:    https://github.com/Zazu979
  * @Last Modified by: Zazu
- * @Last Modified time: 2018-12-22 18:59:38
+ * @Last Modified time: 2019-01-26 18:54:00
 */
 
 /*
@@ -23,6 +23,7 @@
 #include <createSteg.h>
 #include <destroySteg.h>
 
+#include <fileType.h>
 // #include <encryption.h>
 
 int main(int argc, char **argv){
@@ -34,7 +35,7 @@ int main(int argc, char **argv){
       setVerbose(args->verbose);
 
       if(args->type == CREATE_STEG){
-         createSteganography(args->imageFile, args->inputFile, args->outputFile, args->bitSize);
+         createSteganography(args->imageFile, args->dataFile, args->outputFile, args->bitSize);
       }else if(args->type == DESTROY_STEG){
          destroySteganography(args->imageFile, args->outputFile);
       }else{
@@ -43,8 +44,8 @@ int main(int argc, char **argv){
    }else{
       // TODO: Specific errors dependant on status
 
-      printf("./StegTool image.png input.txt output.png\n");
-      printf("./StegTool -d image.png input.txt \n");
+      printf("./StegTool -i input.png -f data.txt -o output.png\n");
+      printf("./StegTool -d -i input.png -o data.txt \n");
    }
 
    free(args);

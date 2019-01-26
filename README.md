@@ -10,7 +10,7 @@ This is a tool that can be used to hide data within an image. The format of that
 
 ## Installing
 
-+ Run *cmake .* from the home directory
++ Run *cmake .* from the root directory
 + run *make*
 
 ## Running

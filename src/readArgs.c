@@ -2,8 +2,8 @@
  * @Author: Zazu
  * @Date:   2018-12-22 11:51:58
  * @Git:    https://github.com/Zazu979
- * @Last Modified by:   Zazu
- * @Last Modified time: 2018-12-22 11:51:58
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2019-01-26 18:53:39
 */
 
 
@@ -46,7 +46,7 @@ int parse_opt (int key, char *arg, struct argp_state *state)
          args->imageFile = arg;
          break;
       case 'f':
-         args->inputFile = arg;
+         args->dataFile = arg;
          break;
       case 'o':
          args->outputFile = arg;
@@ -54,7 +54,7 @@ int parse_opt (int key, char *arg, struct argp_state *state)
       case 'd':
          args->type = DESTROY_STEG;
          break;
-      case 'c': // TODO read arg for bitsize
+      case 'c': 
          args->bitSize = 2;
          break;
       case 'v':
@@ -71,7 +71,7 @@ Arguments* createArgs(){
    Arguments* args = (Arguments*)malloc(sizeof(Arguments));
    
    args->imageFile = NULL;
-   args->inputFile = NULL;
+   args->dataFile = NULL;
    args->outputFile = NULL;
    args->bitSize = 1;
    args->verbose = FALSE;
@@ -95,8 +95,8 @@ void checkArgs(Arguments* args){
    }
    // If you are create a steg then their must also be in input file.
    else if(args->type == CREATE_STEG){
-      if(args->inputFile == NULL){
-         args->status = NO_INPUT_FILE;
+      if(args->dataFile == NULL){
+         args->status = NO_DATA_FILE;
       }
    }
 

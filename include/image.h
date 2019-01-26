@@ -3,11 +3,13 @@
  * @Date:   2018-12-22 11:50:00
  * @Git:    https://github.com/Zazu979
  * @Last Modified by: Zazu
- * @Last Modified time: 2018-12-22 13:59:25
+ * @Last Modified time: 2019-01-26 18:49:30
 */
  
 #ifndef IMAGE_H
 #define IMAGE_H
+
+#include <fileType.h>
 
 #define PIXEL_RED   0
 #define PIXEL_GREEN 1
@@ -21,11 +23,10 @@
 // TODO refactor sizing here and store all options :)
 // TODO fix bitSize 
 typedef struct{
-   unsigned int bitSize       : 1;  // Bits Per Pixel
-   unsigned int compress      : 1;  // Whether the image data has been compressed
-   unsigned int dataLength    : HEADER_SIZE -2 ; // The amount of data to to be read
-   int binValue[HEADER_SIZE];       // Binary value of the  above information
-   int binLength;                   // The number of bits that the header takes
+   unsigned int bitSize;      // Bits Per Pixel
+   unsigned int compress;     // Whether the image data has been compressed
+   unsigned int dataLength;   // The amount of data to to be read
+   int binValue[HEADER_SIZE]; // Binary value of the  above information
 }StegHeader;
 
 typedef struct{
@@ -37,7 +38,7 @@ typedef struct{
    int width, height;
 }Image;
 
-Image* readImage(char* filename);
+Image* readImage(char* filename, IMAGE_TYPE type);
 void saveImage(Image* image, char* filename);
 Image* createImage(int width, int height);
 void freeImage(Image* image);

@@ -1,26 +1,28 @@
 /*
  * @Author: Zazu
- * @Date:   2018-12-22 11:51:48
+ * @Date:   2019-01-26 15:14:34
  * @Git:    https://github.com/Zazu979
  * @Last Modified by: Zazu
- * @Last Modified time: 2018-12-22 15:52:15
+ * @Last Modified time: 2019-01-26 18:52:05
 */
+
 
 
 /*#include <stdint.h>*/
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 #include <readJPG.h>
 #include <readPNG.h>
 
 #include <image.h>
-#include <compression.h>
+#include <compression.h> 
 #include <binary.h>
 #include <bool.h>
 #include <genericSteg.h>
+#include <fileType.h>
 
 #include <createSteg.h>
 
@@ -28,28 +30,38 @@ static void hideBitInColour(int* colour, int* binValue, int bitSize);
 static int verifySize(Image* image, uint32_t inputLength, int bitSize);
 static void startSteg(Image* image, char* filename, uint32_t fileLength, int bitSize);
 
-void createSteganography(char* imageFile, char* inputFile, char* outputFile, int bitSize){
+void createSteganography(char* imageFile, char* dataFile, char* outputFile, int bitSize){
 
    uint32_t inputLength;
-   Image* image = readImage(imageFile);
 
-   // Returns the filename that is to be used, If the compression works then used the compressed one;
-   // TODO error handling 
-   inputFile = compressFile(inputFile, COMPRESSED_FILE);
-   inputLength = getFileLength(inputFile);
-   
-   /*Check that the length can fit in the file*/
-   if(verifySize(image,inputLength, bitSize)){
-      startSteg(image, inputFile, inputLength, bitSize);
-      saveImage(image, outputFile);
-   }else{
-      printf("Image file is not large enough to hide input file.\nImage has %d pixels. \
-      You need atleast %d pixels. for this input file\n", image->width * image->height, ((inputLength+4)*8)/3);
+   IMAGE_TYPE imageType = detectImageType(imageFile);
+
+   if(imageType == NOT_AN_IMAGE)
+      perror("Input imagefile is not an image\n");
+   else if(imageType == UNKNOWN_FORMAT)
+      perror("Image type is not compatible. Please change\n");
+   else{
+      Image* image = readImage(imageFile, imageType);
+
+      // Returns the filename that is to be used, If the compression works then used the compressed one;
+      // TODO error handling 
+      dataFile = compressFile(dataFile, COMPRESSED_FILE);
+      inputLength = getFileLength(dataFile);
+      
+      /*Check that the length can fit in the file*/
+      if(verifySize(image,inputLength, bitSize)){
+         startSteg(image, dataFile, inputLength, bitSize);
+         saveImage(image, outputFile);
+      }else{
+         printf("Image file is not large enough to hide input file.\nImage has %d pixels. \
+         You need atleast %d pixels. for this input file\n", image->width * image->height, ((inputLength+4)*8)/3);
+      }
+
+      /*Delete the temporary file*/
+      remove(COMPRESSED_FILE);
+      freeImage(image);
+
    }
-
-   /*Delete the temporary file*/
-   remove(COMPRESSED_FILE);
-   freeImage(image);
 }
 
 static StegHeader* createHeader(uint32_t fileLength, char* filename, int bitSize){
@@ -64,28 +76,28 @@ static StegHeader* createHeader(uint32_t fileLength, char* filename, int bitSize
    unsigned int dataLength = header->dataLength;
 
    // TODO enable the option to change bitSize
+   header->bitSize = 0;
+   
    if(bitSize == 1){
-      header->bitSize = 0;
       header->binValue[0] = 0;
-   }else{
-      header->bitSize = 1;
+   }else if(bitSize == 2){
       header->binValue[0] = 1;
+   }else{
+      perror("An unknown error has occured with the BitSize :(\n");
+      header->bitSize = 1;
+      header->binValue[0] = 0;
    }
-
-   // If they are identical
+   // Whether or not you have compressed the file
    if(filename - COMPRESSED_FILE == 0){
       header->binValue[1] = TRUE;
    }else{
       header->binValue[1] = FALSE;
    }
 
-   for(ii = HEADER_SIZE -1 ; ii > 1; ii--){
+   for(ii = HEADER_SIZE -1 ; ii >= 2; ii--){
       header->binValue[ii] = dataLength & 1;
       dataLength >>= 1;
    }
-
-
-   header->binLength = HEADER_SIZE;
 
    return header;
 }
@@ -135,9 +147,8 @@ static void startSteg(Image* image, char* filename, uint32_t fileLength, int bit
             }
 
             if(readHeader){
-
                bitValue = &header->binValue[idx];
-               if(idx == header->binLength -1){
+               if(idx == HEADER_SIZE - 1){
                   // You have finished the bits for the header-> Now onto the body
                   readHeader = FALSE;
                   // Reset the counter. -1 to counter the increment at the end of the loop
@@ -179,38 +190,69 @@ static void hideBitInColour(int* colour, int* binValue, int bits){
          *colour = 254;
       
       else if(*colour % 2 != *binValue)
-         *colour = *colour+1;  
-   }else{
-      // The desired value to be stored
+         *colour = *colour+1; 
+   }else if(bits == 2){
       int value = 0;
-      int maxVal = 1;
 
-      for(int ii = 0; ii < bits; ii++){
-         maxVal *= 2;
-         value <<=1;
-         value += binValue[ii];
-      }
+      // Convert the first 2 bits of the binary value into an integer
+      if(binValue[0] == 1)
+         value += 2;
+      if(binValue[1] == 1)
+         value += 1;
+      
+      // Get the mod value of the current colour
+      int modVal = *colour % 4;
 
-      int modVal = *colour % maxVal;
-
-      // You already have the desired value.
+      // There is nothing to do if the colour already represents the value
       if(modVal == value)
          return;
 
       int modifier = value - modVal;
 
-      // Modify up or down the minimum amount required
-      if(modifier > maxVal/2)
-         modifier = modifier - maxVal;
-      
-      *colour = *colour + modifier;
+      // Go down by 1 instead of going up by 3. Reduce the maximum colour change
+      if(modifier == 3)
+         modifier = -1;
 
-      // Handle the boundary limits
-      if(*colour > 255)
-         *colour -= maxVal;
+      *colour += modifier;
 
+      // Boundary checks
       if(*colour < 0)
-         *colour += maxVal;
+         *colour += 4;
+      else if(*colour > 255)
+         *colour -= 4;
+
+
+   }else{
+      // // The desired value to be stored
+      // int value = 0;
+      // int maxVal = 1;
+
+      // for(int ii = 0; ii < bits; ii++){
+      //    maxVal *= 2;
+      //    value <<=1;
+      //    value += binValue[ii];
+      // }
+
+      // int modVal = *colour % maxVal;
+
+      // // You already have the desired value.
+      // if(modVal == value)
+      //    return;
+
+      // int modifier = value - modVal;
+
+      // // Modify up or down the minimum amount required
+      // if(modifier > maxVal/2)
+      //    modifier = modifier - maxVal;
+      
+      // *colour = *colour + modifier;
+
+      // // Handle the boundary limits
+      // if(*colour > 255)
+      //    *colour -= maxVal;
+
+      // if(*colour < 0)
+      //    *colour += maxVal;
 
    }
 }

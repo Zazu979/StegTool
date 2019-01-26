@@ -3,7 +3,7 @@
  * @Date:   2018-12-22 11:47:20
  * @Git:    https://github.com/Zazu979
  * @Last Modified by: Zazu
- * @Last Modified time: 2018-12-22 15:25:27
+ * @Last Modified time: 2019-01-26 18:15:49
  */
  
 
@@ -14,8 +14,9 @@
 #include <compression.h>
 #include <image.h>
 #include <binary.h>
-#include <genericSteg.h>
+#include <genericSteg.h> 
 #include <bool.h>
+#include <fileType.h>
 
 #include <destroySteg.h> 
 
@@ -33,7 +34,12 @@ static void createHeader(StegHeader* header){
 }
 
 void destroySteganography(char* imageFile, char* outputFile){
-   Image* image = readImage(imageFile);
+
+   IMAGE_TYPE type = detectImageType(imageFile);
+
+   // TODO type validation
+
+   Image* image = readImage(imageFile, type);
    removeSteg(image, outputFile);
    freeImage(image);
 }
@@ -66,7 +72,7 @@ void removeSteg(Image* image, char* outputFile){
 
    // The value that the colour is modded by (Determined by bits per colour)
    int modder = 2; 
-   int bitSize = 1;
+   int bitSize = 1; 
 
    for (ii = 0; ii < height; ii++){
       for (jj = 0; jj < width; jj++){
@@ -104,7 +110,6 @@ void removeSteg(Image* image, char* outputFile){
                      file = fopen(outputFile, "wb");
                   }
 
-                  // TODO allow for more bitSizes
                   if(header->bitSize == 0){
                      bitSize = 1;
                      modder = 2;
@@ -123,6 +128,7 @@ void removeSteg(Image* image, char* outputFile){
 
                   if(idx == 8-bitSize){
                      value = binToVal(binValue);
+                     printf("%c\n", value);
                      fputc(value, file);
                      idx = -bitSize;                     
                   }
