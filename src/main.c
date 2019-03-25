@@ -28,6 +28,7 @@
 
 int main(int argc, char **argv){
 
+
    Arguments* args = readArgs(argc, argv);
 
    if(args->status == VALID){

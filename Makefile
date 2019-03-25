@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zazu/Documents/StegTool
+CMAKE_SOURCE_DIR = /home/zazu/Documents/Projects/StegTool
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zazu/Documents/StegTool
+CMAKE_BINARY_DIR = /home/zazu/Documents/Projects/StegTool
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/StegTool/CMakeFiles /home/zazu/Documents/StegTool/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/Projects/StegTool/CMakeFiles /home/zazu/Documents/Projects/StegTool/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/StegTool/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zazu/Documents/Projects/StegTool/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named StegTool
+# Target rules for targets named stegtool
 
 # Build rule for target.
-StegTool: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 StegTool
-.PHONY : StegTool
+stegtool: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 stegtool
+.PHONY : stegtool
 
 # fast build rule for target.
-StegTool/fast:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/build
-.PHONY : StegTool/fast
+stegtool/fast:
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/build
+.PHONY : stegtool/fast
 
 src/binary.o: src/binary.c.o
 
@@ -129,7 +129,7 @@ src/binary.o: src/binary.c.o
 
 # target to build an object file
 src/binary.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/binary.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/binary.c.o
 .PHONY : src/binary.c.o
 
 src/binary.i: src/binary.c.i
@@ -138,7 +138,7 @@ src/binary.i: src/binary.c.i
 
 # target to preprocess a source file
 src/binary.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/binary.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/binary.c.i
 .PHONY : src/binary.c.i
 
 src/binary.s: src/binary.c.s
@@ -147,7 +147,7 @@ src/binary.s: src/binary.c.s
 
 # target to generate assembly for a file
 src/binary.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/binary.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/binary.c.s
 .PHONY : src/binary.c.s
 
 src/compression.o: src/compression.c.o
@@ -156,7 +156,7 @@ src/compression.o: src/compression.c.o
 
 # target to build an object file
 src/compression.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/compression.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/compression.c.o
 .PHONY : src/compression.c.o
 
 src/compression.i: src/compression.c.i
@@ -165,7 +165,7 @@ src/compression.i: src/compression.c.i
 
 # target to preprocess a source file
 src/compression.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/compression.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/compression.c.i
 .PHONY : src/compression.c.i
 
 src/compression.s: src/compression.c.s
@@ -174,7 +174,7 @@ src/compression.s: src/compression.c.s
 
 # target to generate assembly for a file
 src/compression.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/compression.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/compression.c.s
 .PHONY : src/compression.c.s
 
 src/createSteg.o: src/createSteg.c.o
@@ -183,7 +183,7 @@ src/createSteg.o: src/createSteg.c.o
 
 # target to build an object file
 src/createSteg.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/createSteg.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/createSteg.c.o
 .PHONY : src/createSteg.c.o
 
 src/createSteg.i: src/createSteg.c.i
@@ -192,7 +192,7 @@ src/createSteg.i: src/createSteg.c.i
 
 # target to preprocess a source file
 src/createSteg.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/createSteg.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/createSteg.c.i
 .PHONY : src/createSteg.c.i
 
 src/createSteg.s: src/createSteg.c.s
@@ -201,7 +201,7 @@ src/createSteg.s: src/createSteg.c.s
 
 # target to generate assembly for a file
 src/createSteg.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/createSteg.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/createSteg.c.s
 .PHONY : src/createSteg.c.s
 
 src/destroySteg.o: src/destroySteg.c.o
@@ -210,7 +210,7 @@ src/destroySteg.o: src/destroySteg.c.o
 
 # target to build an object file
 src/destroySteg.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/destroySteg.c.o
 .PHONY : src/destroySteg.c.o
 
 src/destroySteg.i: src/destroySteg.c.i
@@ -219,7 +219,7 @@ src/destroySteg.i: src/destroySteg.c.i
 
 # target to preprocess a source file
 src/destroySteg.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/destroySteg.c.i
 .PHONY : src/destroySteg.c.i
 
 src/destroySteg.s: src/destroySteg.c.s
@@ -228,7 +228,7 @@ src/destroySteg.s: src/destroySteg.c.s
 
 # target to generate assembly for a file
 src/destroySteg.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/destroySteg.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/destroySteg.c.s
 .PHONY : src/destroySteg.c.s
 
 src/encryption.o: src/encryption.c.o
@@ -237,7 +237,7 @@ src/encryption.o: src/encryption.c.o
 
 # target to build an object file
 src/encryption.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/encryption.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/encryption.c.o
 .PHONY : src/encryption.c.o
 
 src/encryption.i: src/encryption.c.i
@@ -246,7 +246,7 @@ src/encryption.i: src/encryption.c.i
 
 # target to preprocess a source file
 src/encryption.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/encryption.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/encryption.c.i
 .PHONY : src/encryption.c.i
 
 src/encryption.s: src/encryption.c.s
@@ -255,7 +255,7 @@ src/encryption.s: src/encryption.c.s
 
 # target to generate assembly for a file
 src/encryption.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/encryption.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/encryption.c.s
 .PHONY : src/encryption.c.s
 
 src/fileType.o: src/fileType.c.o
@@ -264,7 +264,7 @@ src/fileType.o: src/fileType.c.o
 
 # target to build an object file
 src/fileType.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/fileType.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/fileType.c.o
 .PHONY : src/fileType.c.o
 
 src/fileType.i: src/fileType.c.i
@@ -273,7 +273,7 @@ src/fileType.i: src/fileType.c.i
 
 # target to preprocess a source file
 src/fileType.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/fileType.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/fileType.c.i
 .PHONY : src/fileType.c.i
 
 src/fileType.s: src/fileType.c.s
@@ -282,7 +282,7 @@ src/fileType.s: src/fileType.c.s
 
 # target to generate assembly for a file
 src/fileType.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/fileType.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/fileType.c.s
 .PHONY : src/fileType.c.s
 
 src/genericSteg.o: src/genericSteg.c.o
@@ -291,7 +291,7 @@ src/genericSteg.o: src/genericSteg.c.o
 
 # target to build an object file
 src/genericSteg.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/genericSteg.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/genericSteg.c.o
 .PHONY : src/genericSteg.c.o
 
 src/genericSteg.i: src/genericSteg.c.i
@@ -300,7 +300,7 @@ src/genericSteg.i: src/genericSteg.c.i
 
 # target to preprocess a source file
 src/genericSteg.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/genericSteg.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/genericSteg.c.i
 .PHONY : src/genericSteg.c.i
 
 src/genericSteg.s: src/genericSteg.c.s
@@ -309,7 +309,7 @@ src/genericSteg.s: src/genericSteg.c.s
 
 # target to generate assembly for a file
 src/genericSteg.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/genericSteg.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/genericSteg.c.s
 .PHONY : src/genericSteg.c.s
 
 src/image.o: src/image.c.o
@@ -318,7 +318,7 @@ src/image.o: src/image.c.o
 
 # target to build an object file
 src/image.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/image.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/image.c.o
 .PHONY : src/image.c.o
 
 src/image.i: src/image.c.i
@@ -327,7 +327,7 @@ src/image.i: src/image.c.i
 
 # target to preprocess a source file
 src/image.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/image.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/image.c.i
 .PHONY : src/image.c.i
 
 src/image.s: src/image.c.s
@@ -336,7 +336,7 @@ src/image.s: src/image.c.s
 
 # target to generate assembly for a file
 src/image.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/image.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/image.c.s
 .PHONY : src/image.c.s
 
 src/main.o: src/main.c.o
@@ -345,7 +345,7 @@ src/main.o: src/main.c.o
 
 # target to build an object file
 src/main.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/main.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/main.c.o
 .PHONY : src/main.c.o
 
 src/main.i: src/main.c.i
@@ -354,7 +354,7 @@ src/main.i: src/main.c.i
 
 # target to preprocess a source file
 src/main.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/main.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/main.c.i
 .PHONY : src/main.c.i
 
 src/main.s: src/main.c.s
@@ -363,7 +363,7 @@ src/main.s: src/main.c.s
 
 # target to generate assembly for a file
 src/main.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/main.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/main.c.s
 .PHONY : src/main.c.s
 
 src/readArgs.o: src/readArgs.c.o
@@ -372,7 +372,7 @@ src/readArgs.o: src/readArgs.c.o
 
 # target to build an object file
 src/readArgs.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readArgs.c.o
 .PHONY : src/readArgs.c.o
 
 src/readArgs.i: src/readArgs.c.i
@@ -381,7 +381,7 @@ src/readArgs.i: src/readArgs.c.i
 
 # target to preprocess a source file
 src/readArgs.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readArgs.c.i
 .PHONY : src/readArgs.c.i
 
 src/readArgs.s: src/readArgs.c.s
@@ -390,7 +390,7 @@ src/readArgs.s: src/readArgs.c.s
 
 # target to generate assembly for a file
 src/readArgs.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readArgs.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readArgs.c.s
 .PHONY : src/readArgs.c.s
 
 src/readJPG.o: src/readJPG.c.o
@@ -399,7 +399,7 @@ src/readJPG.o: src/readJPG.c.o
 
 # target to build an object file
 src/readJPG.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readJPG.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readJPG.c.o
 .PHONY : src/readJPG.c.o
 
 src/readJPG.i: src/readJPG.c.i
@@ -408,7 +408,7 @@ src/readJPG.i: src/readJPG.c.i
 
 # target to preprocess a source file
 src/readJPG.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readJPG.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readJPG.c.i
 .PHONY : src/readJPG.c.i
 
 src/readJPG.s: src/readJPG.c.s
@@ -417,7 +417,7 @@ src/readJPG.s: src/readJPG.c.s
 
 # target to generate assembly for a file
 src/readJPG.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readJPG.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readJPG.c.s
 .PHONY : src/readJPG.c.s
 
 src/readPNG.o: src/readPNG.c.o
@@ -426,7 +426,7 @@ src/readPNG.o: src/readPNG.c.o
 
 # target to build an object file
 src/readPNG.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readPNG.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readPNG.c.o
 .PHONY : src/readPNG.c.o
 
 src/readPNG.i: src/readPNG.c.i
@@ -435,7 +435,7 @@ src/readPNG.i: src/readPNG.c.i
 
 # target to preprocess a source file
 src/readPNG.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readPNG.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readPNG.c.i
 .PHONY : src/readPNG.c.i
 
 src/readPNG.s: src/readPNG.c.s
@@ -444,7 +444,7 @@ src/readPNG.s: src/readPNG.c.s
 
 # target to generate assembly for a file
 src/readPNG.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/readPNG.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/readPNG.c.s
 .PHONY : src/readPNG.c.s
 
 src/verbose.o: src/verbose.c.o
@@ -453,7 +453,7 @@ src/verbose.o: src/verbose.c.o
 
 # target to build an object file
 src/verbose.c.o:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/verbose.c.o
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/verbose.c.o
 .PHONY : src/verbose.c.o
 
 src/verbose.i: src/verbose.c.i
@@ -462,7 +462,7 @@ src/verbose.i: src/verbose.c.i
 
 # target to preprocess a source file
 src/verbose.c.i:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/verbose.c.i
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/verbose.c.i
 .PHONY : src/verbose.c.i
 
 src/verbose.s: src/verbose.c.s
@@ -471,7 +471,7 @@ src/verbose.s: src/verbose.c.s
 
 # target to generate assembly for a file
 src/verbose.c.s:
-	$(MAKE) -f CMakeFiles/StegTool.dir/build.make CMakeFiles/StegTool.dir/src/verbose.c.s
+	$(MAKE) -f CMakeFiles/stegtool.dir/build.make CMakeFiles/stegtool.dir/src/verbose.c.s
 .PHONY : src/verbose.c.s
 
 # Help Target
@@ -481,7 +481,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... StegTool"
+	@echo "... stegtool"
 	@echo "... edit_cache"
 	@echo "... src/binary.o"
 	@echo "... src/binary.i"

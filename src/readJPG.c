@@ -2,8 +2,8 @@
  * @Author: Zazu
  * @Date:   2018-12-22 11:51:36
  * @Git:    https://github.com/Zazu979
- * @Last Modified by:   Zazu
- * @Last Modified time: 2018-12-22 11:51:36
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2019-01-26 21:01:19
 */
 
 
@@ -26,6 +26,8 @@ Image* readJPG(char* filename){
 
    if(infile == NULL)
       return NULL;
+
+   //TODO all the error handling :(
 
    cinfo.err = jpeg_std_error(&jerr);
 
@@ -57,9 +59,7 @@ Image* readJPG(char* filename){
       ii++;
 
    }
-
-   printf("%d * %d : %d\n", width, height, cinfo.output_components);
-
+   
    jpeg_destroy_decompress(&cinfo);
 
    fclose(infile);

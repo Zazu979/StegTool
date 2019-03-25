@@ -2,8 +2,8 @@
  * @Author: Zazu
  * @Date:   2018-12-22 11:52:02
  * @Git:    https://github.com/Zazu979
- * @Last Modified by:   Zazu
- * @Last Modified time: 2018-12-22 11:52:02
+ * @Last Modified by: Zazu
+ * @Last Modified time: 2019-01-26 20:59:06
 */
 
 
@@ -51,6 +51,8 @@ void savePNG(Image* image, char* filename){
 
    int width = image->width;
    int height = image->height;
+
+   //TODO fix error handling to be uniform
 
    printf("Save PNG\n");
 

@@ -49,6 +49,27 @@ static IMAGE_TYPE getImageType(char* filetype){
    return type;
 }
 
+IMAGE_TYPE detectFileExtension(char* filename){
+   char* ext = strstr(filename, ".");
+   char* tmp = ext;
+   if(ext != NULL){
+
+      while(tmp != NULL){
+         ext = tmp;
+         tmp = strstr(tmp+1,".");
+      }
+
+      ext++;
+      if(*ext != '\0'){
+         if(strncmp(ext, "jpg", 4) == 0 || strncmp(ext, "jpeg", 5) == 0)
+            return JPG;
+         if(strncmp(ext, "png", 4) == 0)
+            return PNG;
+      }
+   }
+   return UNKNOWN_FORMAT;
+}
+
 IMAGE_TYPE detectImageType(char* filename){
 
    char* filetype = getFileType(filename);

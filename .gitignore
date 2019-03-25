@@ -19,3 +19,5 @@ txt/*
 txt
 img/*
 img
+
+.vscode/*

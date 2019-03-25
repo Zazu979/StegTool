@@ -25,7 +25,7 @@ Image* readImage(char* filename, IMAGE_TYPE type){
 
 void saveImage(Image* image, char* filename){
 
-   IMAGE_TYPE type = detectImageType(filename);
+   IMAGE_TYPE type = detectFileExtension(filename);
 
    if(type == NOT_AN_IMAGE)
       perror("Output image is not an image type. Use PNG or JPG");

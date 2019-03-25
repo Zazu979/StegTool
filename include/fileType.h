@@ -11,6 +11,7 @@
 
 typedef enum{PNG, JPG, UNKNOWN_FORMAT, NOT_AN_IMAGE}IMAGE_TYPE;
 
+IMAGE_TYPE detectFileExtension(char* filename);
 IMAGE_TYPE detectImageType(char* filename);
 
 #endif /* FILETYPE_H */
